@@ -4,8 +4,8 @@ import 'package:hamdars_task/view/splash_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/';
-  static const String loginView = '/login_view';
-  static const String homeView = '/home_view';
+  static const String learnScreen = '/learn_screen';
+
 
   static appRoutes() => [
         GetPage(
@@ -15,7 +15,7 @@ class AppRoutes {
           transition: Transition.leftToRightWithFade,
         ),
         GetPage(
-          name: loginView,
+          name: learnScreen,
           page: () => const LearnScreen(),
           transitionDuration: const Duration(milliseconds: 250),
           transition: Transition.leftToRightWithFade,

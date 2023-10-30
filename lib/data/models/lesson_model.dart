@@ -48,16 +48,16 @@ class Lesson {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["name"] = name;
-    _data["unit_icon"] = unitIcon;
-    _data["sum_user_study"] = sumUserStudy;
-    _data["hamdarsUserUnitLevelIndex"] = hamdarsUserUnitLevelIndex;
-    _data["hamdarsUserCurrentUnitLevelPoint"] =
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["name"] = name;
+    data["unit_icon"] = unitIcon;
+    data["sum_user_study"] = sumUserStudy;
+    data["hamdarsUserUnitLevelIndex"] = hamdarsUserUnitLevelIndex;
+    data["hamdarsUserCurrentUnitLevelPoint"] =
         hamdarsUserCurrentUnitLevelPoint;
-    _data["hamdarsUserMaxUnitLevelPoint"] = hamdarsUserMaxUnitLevelPoint;
-    _data["hamdarsUserMinUnitLevelPoint"] = hamdarsUserMinUnitLevelPoint;
-    return _data;
+    data["hamdarsUserMaxUnitLevelPoint"] = hamdarsUserMaxUnitLevelPoint;
+    data["hamdarsUserMinUnitLevelPoint"] = hamdarsUserMinUnitLevelPoint;
+    return data;
   }
 }
