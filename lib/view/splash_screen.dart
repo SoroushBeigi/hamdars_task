@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamdars_task/view_model/services/splash_screen_service.dart';
+import 'package:hamdars_task/view_model/services/splash/splash_screen_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
