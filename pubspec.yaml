@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   get: ^4.6.6
+  dio: ^5.3.3
+  circle_wheel_scroll: ^0.0.3
+  flutter_svg: ^2.0.8
 
 dev_dependencies:
   flutter_test:

@@ -54,8 +54,7 @@ class Lesson {
     data["unit_icon"] = unitIcon;
     data["sum_user_study"] = sumUserStudy;
     data["hamdarsUserUnitLevelIndex"] = hamdarsUserUnitLevelIndex;
-    data["hamdarsUserCurrentUnitLevelPoint"] =
-        hamdarsUserCurrentUnitLevelPoint;
+    data["hamdarsUserCurrentUnitLevelPoint"] = hamdarsUserCurrentUnitLevelPoint;
     data["hamdarsUserMaxUnitLevelPoint"] = hamdarsUserMaxUnitLevelPoint;
     data["hamdarsUserMinUnitLevelPoint"] = hamdarsUserMinUnitLevelPoint;
     return data;

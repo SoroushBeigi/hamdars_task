@@ -6,7 +6,6 @@ class AppRoutes {
   static const String splashScreen = '/';
   static const String learnScreen = '/learn_screen';
 
-
   static appRoutes() => [
         GetPage(
           name: splashScreen,
