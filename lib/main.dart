@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamdars_task/routes.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(const TaskApp());
@@ -10,12 +11,14 @@ class TaskApp extends StatelessWidget {
   const TaskApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Hamdars Task',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ResponsiveSizer(
+      builder: (context, orientation, screenType) => GetMaterialApp(
+        title: 'Hamdars Task',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        getPages: AppRoutes.appRoutes(),
       ),
-      getPages: AppRoutes.appRoutes(),
     );
   }
 }

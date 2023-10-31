@@ -1,4 +1,4 @@
-import 'package:circle_wheel_scroll/circle_wheel_render.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -24,9 +24,6 @@ class _LearnScreenState extends State<LearnScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Obx(() => learnVM.loading.value
           ? const Center(child: CircularProgressIndicator())
@@ -41,7 +38,7 @@ class _LearnScreenState extends State<LearnScreen> {
                             Column(
                               children: [
                                 Container(
-                                  height: height * 0.75,
+                                  height: 75.h,
                                 ),
                                 Text(learnVM
                                     .lessons[learnVM.selectedIndex.value]
@@ -51,11 +48,11 @@ class _LearnScreenState extends State<LearnScreen> {
                             Column(
                               children: [
                                 SizedBox(
-                                  height: height * 0.5,
+                                  height: 50.h,
                                 ),
                                 SizedBox(
-                                  width: width * 1,
-                                  height: height * 0.3,
+                                  width: 100.w,
+                                  height: 30.h,
                                   child: wheel.CircleListScrollView.useDelegate(
                                     onSelectedItemChanged: (value) {
                                       learnVM.selectedIndex.value = value;
@@ -65,10 +62,9 @@ class _LearnScreenState extends State<LearnScreen> {
                                     physics: const wheel
                                         .CircleFixedExtentScrollPhysics(),
                                     axis: Axis.horizontal,
-                                    itemExtent: 85,
+                                    itemExtent: 22.w,
                                     clipToSize: false,
-                                    radius:
-                                        MediaQuery.of(context).size.width * 0.4,
+                                    radius: 38.w,
                                     childDelegate: wheel
                                         .CircleListChildLoopingListDelegate(
                                       children: learnVM.lessons
@@ -131,11 +127,11 @@ class _LearnScreenState extends State<LearnScreen> {
     }
 
     if (element.id == currentId) {
-      return 85;
+      return 22.w;
     } else if (element.id == nextId || element.id == prevId) {
-      return 75;
+      return 20.w;
     } else {
-      return 65;
+      return 18.w;
     }
   }
 }
