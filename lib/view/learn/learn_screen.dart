@@ -1,4 +1,5 @@
 import 'package:hamdars_task/common/utils/persian_numbers.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,121 +33,166 @@ class _LearnScreenState extends State<LearnScreen> {
           : SizedBox(
               child: SizedBox(
                 child: SafeArea(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Stack(
-                          children: [
-                            Column(
-                              children: [
-                                SizedBox(height: 77.h),
-                                Container(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 1.5.w),
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(50)),
-                                      color: Colors.yellow[700]),
-                                  child: Text(
-                                    '${PersianNumbers.convertEnToFa(learnVM.lessons[learnVM.selectedIndex.value].hamdarsUserUnitLevelIndex!.toString())} سطح',
-                                    style: TextStyle(
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w500),
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Stack(
+                            children: [
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 65.h,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 0.75.h,
-                                ),
-                                Text(
-                                  PersianNumbers.convertEnToFa(learnVM
-                                      .lessons[learnVM.selectedIndex.value]
-                                      .name!),
-                                  style: TextStyle(
-                                      fontSize: 17.sp,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 0.75.h,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      learnVM.timeFromMinutes(learnVM
-                                          .lessons[learnVM.selectedIndex.value]
-                                          .sumUserStudy!),
-                                      style: TextStyle(fontSize: 17.sp),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        topRight:
+                                            Radius.elliptical(100.w, 50.w),
+                                        topLeft: Radius.elliptical(100.w, 50.w),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          spreadRadius: 0,
+                                          blurRadius: 12,
+                                        ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(1.w, 0, 0, 1.w),
-                                      child: SvgPicture.asset(
-                                          'assets/StudyTime.svg'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 53.h,
-                                ),
-                                SizedBox(
-                                  width: 100.w,
-                                  height: 30.h,
-                                  child: wheel.CircleListScrollView.useDelegate(
-                                    onSelectedItemChanged: (value) {
-                                      learnVM.selectedIndex.value = value;
-                                    },
-                                    controller: _controller,
-                                    renderChildrenOutsideViewport: true,
-                                    physics: const wheel
-                                        .CircleFixedExtentScrollPhysics(),
-                                    axis: Axis.horizontal,
-                                    itemExtent: 22.w,
-                                    clipToSize: false,
-                                    radius: 38.w,
-                                    childDelegate: wheel
-                                        .CircleListChildLoopingListDelegate(
-                                      children: learnVM.lessons
-                                          .map(
-                                            (element) => Center(
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                child: Container(
-                                                  width: calculateSize(element),
-                                                  height:
-                                                      calculateSize(element),
-                                                  color: Colors.grey[300],
-                                                  child: Center(
-                                                    child: SvgPicture.network(
-                                                      element.unitIcon!,
-                                                      placeholderBuilder: (BuildContext
-                                                              context) =>
-                                                          Container(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                      10.0),
-                                                              child:
-                                                                  const CircularProgressIndicator()),
+                                    width: 100.w,
+                                    height: 50.h,
+                                    child: Align(
+                                      alignment: Alignment.topCenter,
+                                      child: SizedBox(
+                                        width: 100.w,
+                                        height: 20.h,
+                                        child: wheel.CircleListScrollView
+                                            .useDelegate(
+                                          onSelectedItemChanged: (value) {
+                                            learnVM.selectedIndex.value = value;
+                                          },
+                                          controller: _controller,
+                                          renderChildrenOutsideViewport: true,
+                                          physics: const wheel
+                                              .CircleFixedExtentScrollPhysics(),
+                                          axis: Axis.horizontal,
+                                          itemExtent: 25.w,
+                                          clipToSize: false,
+                                          radius: 42.w,
+                                          childDelegate: wheel
+                                              .CircleListChildLoopingListDelegate(
+                                            children: learnVM.lessons
+                                                .map(
+                                                  (element) => Center(
+                                                    child:
+                                                        CircularPercentIndicator(
+                                                      radius: calculateSize(
+                                                                  element) /
+                                                              2 +
+                                                          1.5.w,
+                                                      lineWidth: 2.w,
+                                                      animation: true,
+                                                      percent: learnVM
+                                                                  .lessons[learnVM
+                                                                      .selectedIndex
+                                                                      .value]
+                                                                  .id ==
+                                                              element.id
+                                                          ? element.percent!
+                                                          : 0,
+                                                      backgroundColor:
+                                                          Colors.grey[200]!,
+                                                      progressColor:
+                                                          const Color.fromRGBO(
+                                                              117, 139, 235, 1),
+                                                      center: CircleAvatar(
+                                                        backgroundColor:
+                                                            Colors.grey[200],
+                                                        radius: calculateSize(
+                                                                element) /
+                                                            2,
+                                                        child:
+                                                            SvgPicture.network(
+                                                          element.unitIcon!,
+                                                          placeholderBuilder: (BuildContext
+                                                                  context) =>
+                                                              Container(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                          10),
+                                                                  child:
+                                                                      const CircularProgressIndicator()),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                          .toList(),
+                                                )
+                                                .toList(),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ]),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(height: 85.h),
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 1.5.w),
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(50)),
+                                        color: Colors.yellow[600]),
+                                    child: Text(
+                                      '${PersianNumbers.convertEnToFa(learnVM.lessons[learnVM.selectedIndex.value].hamdarsUserUnitLevelIndex!.toString())} سطح',
+                                      style: TextStyle(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 0.75.h,
+                                  ),
+                                  Text(
+                                    PersianNumbers.convertEnToFa(learnVM
+                                        .lessons[learnVM.selectedIndex.value]
+                                        .name!),
+                                    style: TextStyle(
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(
+                                    height: 0.75.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        learnVM.timeFromMinutes(learnVM
+                                            .lessons[
+                                                learnVM.selectedIndex.value]
+                                            .sumUserStudy!),
+                                        style: TextStyle(fontSize: 17.sp,color: Colors.grey[700],),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(1.w, 0, 0, 1.w),
+                                        child: SvgPicture.asset(
+                                            'assets/StudyTime.svg',colorFilter: ColorFilter.mode(Colors.grey[700]!, BlendMode.srcIn)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ]),
+                  ),
                 ),
               ),
             )),
@@ -169,10 +215,13 @@ class _LearnScreenState extends State<LearnScreen> {
     }
 
     if (element.id == currentId) {
+      print('big ' + element.name!);
       return 22.w;
     } else if (element.id == nextId || element.id == prevId) {
+      print('medium ' + element.name!);
       return 20.w;
     } else {
+      print('small ' + element.name!);
       return 18.w;
     }
   }

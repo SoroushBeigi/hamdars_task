@@ -7,6 +7,7 @@ class Lesson {
   int? hamdarsUserCurrentUnitLevelPoint;
   int? hamdarsUserMaxUnitLevelPoint;
   int? hamdarsUserMinUnitLevelPoint;
+  double? percent;
 
   Lesson({
     this.id,
@@ -45,6 +46,8 @@ class Lesson {
     if (json["hamdarsUserMinUnitLevelPoint"] is int) {
       hamdarsUserMinUnitLevelPoint = json["hamdarsUserMinUnitLevelPoint"];
     }
+
+    percent = hamdarsUserCurrentUnitLevelPoint! / (hamdarsUserMaxUnitLevelPoint! - hamdarsUserMinUnitLevelPoint!);
   }
 
   Map<String, dynamic> toJson() {

@@ -16,6 +16,7 @@ dependencies:
   circle_wheel_scroll: ^0.0.3
   flutter_svg: ^2.0.8
   responsive_sizer: ^3.2.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
@@ -24,12 +25,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/StudyTime.svg
-  #   - images/a_dot_ham.jpeg
 
-  
   fonts:
     - family: Vazir
       fonts:
