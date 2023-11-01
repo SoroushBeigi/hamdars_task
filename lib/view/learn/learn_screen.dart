@@ -43,7 +43,7 @@ class _LearnScreenState extends State<LearnScreen> {
                               Column(
                                 children: [
                                   SizedBox(
-                                    height: 65.h,
+                                    height: 60.h,
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
@@ -80,7 +80,7 @@ class _LearnScreenState extends State<LearnScreen> {
                                           axis: Axis.horizontal,
                                           itemExtent: 25.w,
                                           clipToSize: false,
-                                          radius: 42.w,
+                                          radius: 45.w,
                                           childDelegate: wheel
                                               .CircleListChildLoopingListDelegate(
                                             children: learnVM.lessons
@@ -140,7 +140,7 @@ class _LearnScreenState extends State<LearnScreen> {
                               ),
                               Column(
                                 children: [
-                                  SizedBox(height: 85.h),
+                                  SizedBox(height: 82.h),
                                   Container(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 1.5.w),
@@ -215,13 +215,10 @@ class _LearnScreenState extends State<LearnScreen> {
     }
 
     if (element.id == currentId) {
-      print('big ' + element.name!);
       return 22.w;
     } else if (element.id == nextId || element.id == prevId) {
-      print('medium ' + element.name!);
       return 20.w;
     } else {
-      print('small ' + element.name!);
       return 18.w;
     }
   }
