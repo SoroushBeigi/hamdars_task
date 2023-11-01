@@ -3,7 +3,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide ScreenType;
 import 'package:hamdars_task/data/models/lesson_model.dart';
 import 'package:hamdars_task/view_model/controllers/learn/learn_view_model.dart';
 import 'package:circle_wheel_scroll/circle_wheel_scroll_view.dart' as wheel;
@@ -78,7 +78,10 @@ class _LearnScreenState extends State<LearnScreen> {
                                           physics: const wheel
                                               .CircleFixedExtentScrollPhysics(),
                                           axis: Axis.horizontal,
-                                          itemExtent: 25.w,
+                                          itemExtent: Device.screenType ==
+                                                  ScreenType.tablet
+                                              ? 17.5.w
+                                              : 25.w,
                                           clipToSize: false,
                                           radius: 45.w,
                                           childDelegate: wheel
@@ -111,8 +114,7 @@ class _LearnScreenState extends State<LearnScreen> {
                                                         backgroundColor:
                                                             Colors.grey[200],
                                                         radius: calculateSize(
-                                                                element) /
-                                                            2,
+                                                                element) /2,
                                                         child:
                                                             SvgPicture.network(
                                                           element.unitIcon!,
@@ -177,13 +179,19 @@ class _LearnScreenState extends State<LearnScreen> {
                                             .lessons[
                                                 learnVM.selectedIndex.value]
                                             .sumUserStudy!),
-                                        style: TextStyle(fontSize: 17.sp,color: Colors.grey[700],),
+                                        style: TextStyle(
+                                          fontSize: 17.sp,
+                                          color: Colors.grey[700],
+                                        ),
                                       ),
                                       Padding(
                                         padding:
                                             EdgeInsets.fromLTRB(1.w, 0, 0, 1.w),
                                         child: SvgPicture.asset(
-                                            'assets/StudyTime.svg',colorFilter: ColorFilter.mode(Colors.grey[700]!, BlendMode.srcIn)),
+                                            'assets/StudyTime.svg',
+                                            colorFilter: ColorFilter.mode(
+                                                Colors.grey[700]!,
+                                                BlendMode.srcIn)),
                                       ),
                                     ],
                                   ),
@@ -215,11 +223,23 @@ class _LearnScreenState extends State<LearnScreen> {
     }
 
     if (element.id == currentId) {
-      return 22.w;
+      if (Device.screenType == ScreenType.tablet) {
+        return 14.w;
+      } else {
+        return 22.w;
+      }
     } else if (element.id == nextId || element.id == prevId) {
-      return 20.w;
+      if (Device.screenType == ScreenType.tablet) {
+        return 13.w;
+      } else {
+        return 20.w;
+      }
     } else {
-      return 18.w;
+      if (Device.screenType == ScreenType.tablet) {
+        return 12.w;
+      } else {
+        return 18.w;
+      }
     }
   }
 }

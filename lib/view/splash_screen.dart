@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamdars_task/view_model/services/splash/splash_screen_service.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,12 +19,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
           child: Text(
         'Hamdars Test Task',
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 20.sp,
           letterSpacing: 2,
           fontWeight: FontWeight.w600,
         ),
