@@ -16,6 +16,7 @@ class TaskApp extends StatelessWidget {
         title: 'Hamdars Task',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'Vazir'
         ),
         getPages: AppRoutes.appRoutes(),
       ),

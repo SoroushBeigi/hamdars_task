@@ -25,20 +25,18 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/StudyTime.svg
   #   - images/a_dot_ham.jpeg
 
   
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: Vazir
+      fonts:
+        - asset: fonts/Vazir.ttf
+        - asset: fonts/Vazir-Bold.ttf
+        - asset: fonts/Vazir-Light.ttf
+        - asset: fonts/Vazir-Medium.ttf
+        - asset: fonts/Vazir-Thin.ttf
+  
 

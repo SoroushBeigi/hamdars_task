@@ -7,9 +7,12 @@ class LearnViewModel extends GetxController {
   RxBool loading = false.obs;
   RxInt selectedIndex = 5.obs;
   final repository = LearnRepository();
+
   Future<void> loadLessons() async {
     loading.value = true;
     lessons = (await repository.loadLessons()).obs;
     loading.value = false;
   }
+
+  String timeFromMinutes(int minutes) => repository.timeFromMinutes(minutes);
 }

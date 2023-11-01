@@ -1,3 +1,4 @@
+import 'package:hamdars_task/common/utils/persian_numbers.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,6 +26,7 @@ class _LearnScreenState extends State<LearnScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
       body: Obx(() => learnVM.loading.value
           ? const Center(child: CircularProgressIndicator())
           : SizedBox(
@@ -37,18 +39,58 @@ class _LearnScreenState extends State<LearnScreen> {
                           children: [
                             Column(
                               children: [
+                                SizedBox(height: 77.h),
                                 Container(
-                                  height: 75.h,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 1.5.w),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(50)),
+                                      color: Colors.yellow[700]),
+                                  child: Text(
+                                    '${PersianNumbers.convertEnToFa(learnVM.lessons[learnVM.selectedIndex.value].hamdarsUserUnitLevelIndex!.toString())} سطح',
+                                    style: TextStyle(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ),
-                                Text(learnVM
-                                    .lessons[learnVM.selectedIndex.value]
-                                    .name!),
+                                SizedBox(
+                                  height: 0.75.h,
+                                ),
+                                Text(
+                                  PersianNumbers.convertEnToFa(learnVM
+                                      .lessons[learnVM.selectedIndex.value]
+                                      .name!),
+                                  style: TextStyle(
+                                      fontSize: 17.sp,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(
+                                  height: 0.75.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      learnVM.timeFromMinutes(learnVM
+                                          .lessons[learnVM.selectedIndex.value]
+                                          .sumUserStudy!),
+                                      style: TextStyle(fontSize: 17.sp),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(1.w, 0, 0, 1.w),
+                                      child: SvgPicture.asset(
+                                          'assets/StudyTime.svg'),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                             Column(
                               children: [
                                 SizedBox(
-                                  height: 50.h,
+                                  height: 53.h,
                                 ),
                                 SizedBox(
                                   width: 100.w,
