@@ -9,11 +9,11 @@ class ApiProvider {
     _dio.options.headers = {
       'Content-Type': 'application/json; charset=utf-8',
     };
-    _dio.options.baseUrl = Constants.baseUrl;
+    _dio.options.baseUrl = ConstApi.baseUrl;
     _dio.options.followRedirects = false;
     debugPrint('reached provider');
 
-    final response = await _dio.get(Constants.lessonsEndpoint);
+    final response = await _dio.get(ConstApi.lessonsEndpoint);
 
     List<Lesson> lessons = <Lesson>[];
     List<dynamic> parsedJson = response.data;

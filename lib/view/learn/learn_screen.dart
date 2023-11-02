@@ -1,4 +1,6 @@
+import 'package:hamdars_task/common/utils/constants.dart';
 import 'package:hamdars_task/common/utils/persian_numbers.dart';
+import 'package:hamdars_task/view/learn/widgets/custom_widget.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +29,15 @@ class _LearnScreenState extends State<LearnScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
-      body: Obx(() => learnVM.loading.value
-          ? const Center(child: CircularProgressIndicator())
-          : SizedBox(
-              child: SizedBox(
-                child: SafeArea(
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton:
+             Align(alignment: Alignment.topRight, child: Container(margin: EdgeInsets.only(top: 5.h) ,child: const CustomWidget())),
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
+        body: Obx(() => learnVM.loading.value
+            ? const Center(child: CircularProgressIndicator())
+            : SizedBox(
+                child: SizedBox(
                   child: SingleChildScrollView(
                     physics: const NeverScrollableScrollPhysics(),
                     child: Column(
@@ -197,7 +201,7 @@ class _LearnScreenState extends State<LearnScreen> {
                                         padding:
                                             EdgeInsets.fromLTRB(1.w, 0, 0, 1.w),
                                         child: SvgPicture.asset(
-                                            'assets/StudyTime.svg',
+                                            ConstAssets.studyTime,
                                             colorFilter: ColorFilter.mode(
                                                 Colors.grey[700]!,
                                                 BlendMode.srcIn)),
@@ -211,8 +215,8 @@ class _LearnScreenState extends State<LearnScreen> {
                         ]),
                   ),
                 ),
-              ),
-            )),
+              )),
+      ),
     );
   }
 
@@ -255,20 +259,20 @@ class _LearnScreenState extends State<LearnScreen> {
   void onTap(TapDownDetails details) {
     if (details.localPosition.dx < Device.width / 2 - 15.w) {
       final int newIndex;
-      if(_controller.selectedItem==0){
-        newIndex=learnVM.lessons.length-1;
-      }else{
-        newIndex=_controller.selectedItem-1;
+      if (_controller.selectedItem == 0) {
+        newIndex = learnVM.lessons.length - 1;
+      } else {
+        newIndex = _controller.selectedItem - 1;
       }
-       _controller.animateToItem(newIndex,
+      _controller.animateToItem(newIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
     }
     if (details.localPosition.dx > Device.width / 2 + 15.w) {
-         final int newIndex;
-      if(_controller.selectedItem==learnVM.lessons.length-1){
-        newIndex=0;
-      }else{
-        newIndex=_controller.selectedItem+1;
+      final int newIndex;
+      if (_controller.selectedItem == learnVM.lessons.length - 1) {
+        newIndex = 0;
+      } else {
+        newIndex = _controller.selectedItem + 1;
       }
       _controller.animateToItem(newIndex,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);

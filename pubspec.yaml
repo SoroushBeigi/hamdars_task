@@ -27,6 +27,7 @@ flutter:
 
   assets:
     - assets/StudyTime.svg
+    - assets/Student.svg
 
   fonts:
     - family: Vazir
