@@ -18,6 +18,7 @@ class LearnScreen extends StatefulWidget {
 class _LearnScreenState extends State<LearnScreen> {
   final learnVM = Get.put(LearnViewModel());
   final _controller = wheel.FixedExtentScrollController(initialItem: 5);
+
   @override
   void initState() {
     learnVM.loadLessons();
@@ -45,94 +46,102 @@ class _LearnScreenState extends State<LearnScreen> {
                                   SizedBox(
                                     height: 60.h,
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        topRight:
-                                            Radius.elliptical(100.w, 50.w),
-                                        topLeft: Radius.elliptical(100.w, 50.w),
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.1),
-                                          spreadRadius: 0,
-                                          blurRadius: 12,
+                                  GestureDetector(
+                                    onTapDown: onTap,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          topRight:
+                                              Radius.elliptical(100.w, 50.w),
+                                          topLeft:
+                                              Radius.elliptical(100.w, 50.w),
                                         ),
-                                      ],
-                                    ),
-                                    width: 100.w,
-                                    height: 50.h,
-                                    child: Align(
-                                      alignment: Alignment.topCenter,
-                                      child: SizedBox(
-                                        width: 100.w,
-                                        height: 20.h,
-                                        child: wheel.CircleListScrollView
-                                            .useDelegate(
-                                          onSelectedItemChanged: (value) {
-                                            learnVM.selectedIndex.value = value;
-                                          },
-                                          controller: _controller,
-                                          renderChildrenOutsideViewport: true,
-                                          physics: const wheel
-                                              .CircleFixedExtentScrollPhysics(),
-                                          axis: Axis.horizontal,
-                                          itemExtent: Device.screenType ==
-                                                  ScreenType.tablet
-                                              ? 17.5.w
-                                              : 25.w,
-                                          clipToSize: false,
-                                          radius: 45.w,
-                                          childDelegate: wheel
-                                              .CircleListChildLoopingListDelegate(
-                                            children: learnVM.lessons
-                                                .map(
-                                                  (element) => Center(
-                                                    child:
-                                                        CircularPercentIndicator(
-                                                      radius: calculateSize(
-                                                                  element) /
-                                                              2 +
-                                                          1.5.w,
-                                                      lineWidth: 2.w,
-                                                      animation: true,
-                                                      percent: learnVM
-                                                                  .lessons[learnVM
-                                                                      .selectedIndex
-                                                                      .value]
-                                                                  .id ==
-                                                              element.id
-                                                          ? element.percent!
-                                                          : 0,
-                                                      backgroundColor:
-                                                          Colors.grey[200]!,
-                                                      progressColor:
-                                                          const Color.fromRGBO(
-                                                              117, 139, 235, 1),
-                                                      center: CircleAvatar(
-                                                        backgroundColor:
-                                                            Colors.grey[200],
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.1),
+                                            spreadRadius: 0,
+                                            blurRadius: 12,
+                                          ),
+                                        ],
+                                      ),
+                                      width: 100.w,
+                                      height: 50.h,
+                                      child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: SizedBox(
+                                          width: 100.w,
+                                          height: 20.h,
+                                          child: wheel.CircleListScrollView
+                                              .useDelegate(
+                                            onSelectedItemChanged: (value) {
+                                              learnVM.selectedIndex.value =
+                                                  value;
+                                            },
+                                            controller: _controller,
+                                            renderChildrenOutsideViewport: true,
+                                            physics: const wheel
+                                                .CircleFixedExtentScrollPhysics(),
+                                            axis: Axis.horizontal,
+                                            itemExtent: Device.screenType ==
+                                                    ScreenType.tablet
+                                                ? 17.5.w
+                                                : 25.w,
+                                            clipToSize: false,
+                                            radius: 45.w,
+                                            childDelegate: wheel
+                                                .CircleListChildLoopingListDelegate(
+                                              children: learnVM.lessons
+                                                  .map(
+                                                    (element) => Center(
+                                                      child:
+                                                          CircularPercentIndicator(
                                                         radius: calculateSize(
-                                                                element) /2,
-                                                        child:
-                                                            SvgPicture.network(
-                                                          element.unitIcon!,
-                                                          placeholderBuilder: (BuildContext
-                                                                  context) =>
-                                                              Container(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                          10),
-                                                                  child:
-                                                                      const CircularProgressIndicator()),
+                                                                    element) /
+                                                                2 +
+                                                            1.5.w,
+                                                        lineWidth: 2.w,
+                                                        animation: true,
+                                                        percent: learnVM
+                                                                    .lessons[learnVM
+                                                                        .selectedIndex
+                                                                        .value]
+                                                                    .id ==
+                                                                element.id
+                                                            ? element.percent!
+                                                            : 0,
+                                                        backgroundColor:
+                                                            Colors.grey[200]!,
+                                                        progressColor:
+                                                            const Color
+                                                                .fromRGBO(117,
+                                                                139, 235, 1),
+                                                        center: CircleAvatar(
+                                                          backgroundColor:
+                                                              Colors.grey[200],
+                                                          radius: calculateSize(
+                                                                  element) /
+                                                              2,
+                                                          child: SvgPicture
+                                                              .network(
+                                                            element.unitIcon!,
+                                                            placeholderBuilder: (BuildContext
+                                                                    context) =>
+                                                                Container(
+                                                                    padding:
+                                                                        const EdgeInsets
+                                                                            .all(
+                                                                            10),
+                                                                    child:
+                                                                        const CircularProgressIndicator()),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                )
-                                                .toList(),
+                                                  )
+                                                  .toList(),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -240,6 +249,29 @@ class _LearnScreenState extends State<LearnScreen> {
       } else {
         return 18.w;
       }
+    }
+  }
+
+  void onTap(TapDownDetails details) {
+    if (details.localPosition.dx < Device.width / 2 - 15.w) {
+      final int newIndex;
+      if(_controller.selectedItem==0){
+        newIndex=learnVM.lessons.length-1;
+      }else{
+        newIndex=_controller.selectedItem-1;
+      }
+       _controller.animateToItem(newIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+    }
+    if (details.localPosition.dx > Device.width / 2 + 15.w) {
+         final int newIndex;
+      if(_controller.selectedItem==learnVM.lessons.length-1){
+        newIndex=0;
+      }else{
+        newIndex=_controller.selectedItem+1;
+      }
+      _controller.animateToItem(newIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
     }
   }
 }
