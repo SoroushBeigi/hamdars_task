@@ -33,7 +33,7 @@ class _DraggablePaintState extends State<DraggablePaint>
             top: y,
             child: GestureDetector(
               onPanUpdate: (details) {
-                if (x <= 0 || x >= 25.w) {
+                if (x <= -5.w || x >= 30.w) {
                   setState(() {
                     isShowing = false;
                   });
@@ -70,10 +70,12 @@ class _DraggablePaintState extends State<DraggablePaint>
   }
 
   Future<void> showWidget() async {
-    setState(() {
-      isShowing = true;
-      x = 10.w;
-      y = 10.h;
-    });
+    if (!isShowing) {
+      setState(() {
+        isShowing = true;
+        x = 10.w;
+        y = 10.h;
+      });
+    }
   }
 }
