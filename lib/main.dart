@@ -16,7 +16,7 @@ class TaskApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) => GetMaterialApp(
-        
+        debugShowCheckedModeBanner: false,
         title: 'Hamdars Task',
         theme: ThemeData(
           primarySwatch: Colors.blue,
