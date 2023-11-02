@@ -1,4 +1,3 @@
-import 'package:floating_draggable_widget/floating_draggable_widget.dart';
 import 'package:hamdars_task/common/utils/constants.dart';
 import 'package:hamdars_task/common/utils/persian_numbers.dart';
 import 'package:hamdars_task/view/learn/widgets/custom_widget.dart';
@@ -32,32 +31,35 @@ class _LearnScreenState extends State<LearnScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: FloatingDraggableWidget(
-        floatingWidget: const DraggablePaint(),
-        floatingWidgetWidth: 80.w,
-        floatingWidgetHeight: 10.h,
-        dx: 10.w,
-        dy: 10.h,
-        deleteWidgetDecoration:  BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.white.withOpacity(0.1), Colors.black.withOpacity(0.3)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      // child: FloatingDraggableWidget(
+      //   autoAlign: false,
+      //   floatingWidget: const DraggablePaint(),
+      //   floatingWidgetWidth: 80.w,
+      //   floatingWidgetHeight: 10.h,
+      //   dx: 10.w,
+      //   dy: 10.h,
+        // deleteWidgetDecoration:  BoxDecoration(
+        //   gradient: LinearGradient(
+        //     colors: [Colors.white.withOpacity(0.1), Colors.black.withOpacity(0.3)],
+        //     begin: Alignment.topCenter,
+        //     end: Alignment.bottomCenter,
             
-          ),
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(50),
-            topRight: Radius.circular(50),
-          ),
-        ),
-        deleteWidget: Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(width: 2, color: Colors.black87),
-          ),
-          child: const Icon(Icons.close, color: Colors.black87),
-        ),
-        mainScreenWidget: Scaffold(
+        //   ),
+        //   borderRadius: const BorderRadius.only(
+        //     topLeft: Radius.circular(50),
+        //     topRight: Radius.circular(50),
+        //   ),
+        // ),
+        // deleteWidget: Container(
+        //   decoration: BoxDecoration(
+        //     shape: BoxShape.circle,
+        //     border: Border.all(width: 2, color: Colors.black87),
+        //   ),
+        //   child: const Icon(Icons.close, color: Colors.black87),
+        // ),
+        // onDeleteWidget: () => learnVM.isDraggableShowing=false.obs ,
+        // mainScreenWidget:
+         child:Scaffold(
           floatingActionButton: Align(
               alignment: Alignment.topRight,
               child: Container(
@@ -242,6 +244,7 @@ class _LearnScreenState extends State<LearnScreen> {
                                     ),
                                   ],
                                 ),
+                                const DraggablePaint(),
                               ],
                             ),
                           ]),
@@ -249,7 +252,7 @@ class _LearnScreenState extends State<LearnScreen> {
                   ),
                 )),
         ),
-      ),
+      // ),
     );
   }
 
